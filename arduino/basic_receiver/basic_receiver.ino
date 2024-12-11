@@ -1,26 +1,18 @@
-
-/* 
- *  Receiver Side Code
- * 
-  Module SX1278 // Arduino UNO/NANO    
-    Vcc         ->   3.3V
-    MISO        ->   D12
-    MOSI        ->   D11     
-    SLCK        ->   D13
-    Nss         ->   D10
-    GND         ->   GND
- */
- 
 #include <SPI.h>
 #include <LoRa.h>  
+
+ 
+#define ss 5
+#define rst 14
+#define dio0 2
 String inString = "";    // string to hold incoming charaters
 String MyMessage = ""; // Holds the complete message
  
 void setup() {
-  Serial.begin(9600);
- 
+  Serial.begin(115200);
   while (!Serial);
   Serial.println("LoRa Receiver");
+  LoRa.setPins(ss,rst,dio0);
   while(!LoRa.begin(433E6)) { // or 915E6
     Serial.println("Starting LoRa failed!");
     delay(5000);
