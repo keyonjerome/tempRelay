@@ -32,10 +32,10 @@ def main():
             raise LookupError
         execute_statements(conn, create_statements)
 
-        insert_statements = read_sql_file('insert_data.sql')
-        if insert_statements is None:
-            raise LookupError
-        execute_statements(conn,insert_statements)
+        # insert_statements = read_sql_file('insert_data.sql')
+        # if insert_statements is None:
+        #     raise LookupError
+        # execute_statements(conn,insert_statements)
 
     finally:
         conn.close()
